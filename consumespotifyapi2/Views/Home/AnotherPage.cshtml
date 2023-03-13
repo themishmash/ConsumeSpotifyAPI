@@ -9,13 +9,17 @@
     {
         <div class="card m-1" style="width: 350px;">
             <div class="card-body">
-                
-                <p1>@Html.DisplayFor(modelItem=>item.Name)</p1>
-                
+
+                <h5 class="card-ti
+                    ">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.TrackTotal) tracks in total</h6>
+                <img src="@Html.DisplayFor(modelItem=> item.ImageUrl)" width="300" height="300" alt="Playlist picture" />
+                <a href="@Html.DisplayFor(modelItem => item.Link)" target="_blank">Listen to playlist</a>
+
             </div>
         </div>
     }
 </div>
-
-
-<p>Do whatever.</p>
+<p>Featured Playlists in Australia</p>

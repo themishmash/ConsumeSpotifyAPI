@@ -44,8 +44,11 @@ namespace consumespotifyapi2.Services
 
             return responseObject?.playlists?.items.Select(i => new Playlist
             {
-                Name = i.name
-             
+                Name = i.name,
+                ImageUrl = i.images.FirstOrDefault().url,
+                Link = i.external_urls.spotify,
+                TrackTotal = i.tracks.total
+
             });
         }
     }
