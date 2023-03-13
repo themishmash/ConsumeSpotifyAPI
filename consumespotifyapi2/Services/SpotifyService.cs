@@ -33,5 +33,21 @@ namespace consumespotifyapi2.Services
                 Artists = string.Join(",", i.artists.Select(i => i.name))
             });
         }
+
+        public async Task<IEnumerable<Playlist>> GetNewPlaylists(string countryCode, int limit, string accessToken)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var response = await _httpClient.GetAsync($"browse/featured-playlists?country={countryCode}&limit={limit}");
+            response.EnsureSuccessStatusCode();
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            var responseObject = await JsonSerializer.DeserializeAsync<GetNewPlaylistResult>(responseStream);
+
+            return responseObject?.playlists?.items.Select(i => new Playlist
+            {
+                Name = i.name
+             
+            });
+        }
     }
+
 }

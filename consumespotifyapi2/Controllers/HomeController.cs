@@ -52,10 +52,29 @@ namespace consumespotifyapi2.Controllers
             return View();
         }
 
-        public IActionResult AnotherPage()
+        public async Task<IActionResult> AnotherPage()
         {
-            return View();
+            var newPlaylists = await GetNewPlaylists();
+            return View(newPlaylists);
         }
+
+        private async Task<IEnumerable<Playlist>> GetNewPlaylists()
+        {
+            try
+            {
+                var token = await _spotifyAccountService.GetToken(_configuration["Spotify:ClientId"],
+                    _configuration["Spotify:ClientSecret"]);
+                var newPlaylists = await _spotifyService.GetNewPlaylists("AU", 20, token);
+
+                return newPlaylists;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return Enumerable.Empty<Playlist>();
+            }
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
