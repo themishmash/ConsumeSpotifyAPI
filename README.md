@@ -9,3 +9,6 @@ This is what it looks like:
 
 Created a diagram to understand the flow better. 
 ![alt text](https://github.com/themishmash/ConsumeSpotifyAPI/blob/master/readmeFiles/DigramConsumeSpotify.jpg)
+
+Consumed another endpoint - the featured releases endpoint!
+![alt text](https://github.com/themishmash/ConsumeSpotifyAPI/blob/master/readmeFiles/PlaylistApiPhoto.jpg)
